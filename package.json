@@ -1,0 +1,23 @@
+{
+  "name": "social-network",
+  "version": "1.0.0",
+  "description": "Playing with MEAN withouth the A. A simple social-network",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noname07/social-network.git"
+  },
+  "author": "Lucas Grela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noname07/social-network/issues"
+  },
+  "homepage": "https://github.com/noname07/social-network#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
