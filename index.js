@@ -6,18 +6,18 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
 
-var routres = require('./routes');
+var routes = require('./routes');
 
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/test');
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8086);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({encoded: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
   secret: 'TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX',
@@ -28,5 +28,5 @@ app.use(flash());
 app.use(routes);  //Custom middleware
 
 app.listen(app.get('port'), function() {
-  console.log('Server started on port: ' + app.get('port'));
 });
+  console.log('Server started on port: ' + app.get('port'));

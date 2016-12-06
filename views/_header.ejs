@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <title>
       Social-network
-      <% if (currentUser) { %>
-        <%= currentUser.name %>
     </title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
@@ -14,7 +12,7 @@
   <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
-        <a href="navbar-brand" href="/">Social-Network</a>
+        <a class="navbar-brand" href="/">Social-Network</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <% if (currentUser) { %>
@@ -23,13 +21,13 @@
               Hello, <%= currentUser.name() %>
             </a>
           </li>
+          <% } %>
           <li>
             <a href="/logout">Log out</a>
           </li>
           <li>
             <a href="/signup">Sign up</a>
           </li>
-          <% } %>
       </ul>
     </div>
   </div>

@@ -1,4 +1,3 @@
-var noop = function() {}; //Do nothing function for bcrypt.hash
 var bcrypt = require('bcrypt-nodejs');
 var SALT_FACTOR = 10; //Bigger will be more secure but slower. 4 to 32 is the valid range.
 var mongoose = require('mongoose');
@@ -14,21 +13,22 @@ userSchema.methods.name = function() {
   return this.displayedName || this.username;
 };
 
+var noop = function() {}; //Do nothing function for bcrypt.hash
+
 userSchema.pre('save', function(done) {
   var user = this;
   if(!user.isModified('password')) {
     return done();
   }
-});
-
-userSchema.genSalt(SALT_FACTOR, function(err, salt) {
-  if(err) {
-    return done(error);
-  }
-  bcrypt.hash(user.password, salt, noop, function(err, hashedPassword) {
-    user.password = hashedPassword;
-    done();
-  });
+  bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
+    if(err) {
+      return done(error);
+    }
+    bcrypt.hash(user.password, salt, noop, function(err, hashedPassword) {
+      user.password = hashedPassword;
+      done();
+      });
+    });
 });
 
 userSchema.methods.checkPassword = function (guess, done) {
@@ -37,5 +37,5 @@ userSchema.methods.checkPassword = function (guess, done) {
   });
 };
 
-var User = mongoose.model('User', userSchema);
-module.export = User;
+var User = mongoose.model("User", userSchema);
+module.exports = User;
